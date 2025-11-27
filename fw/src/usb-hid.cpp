@@ -138,7 +138,6 @@ public:
     if (count) {
       this->key = key;
       this->count = count * 2; // one for key down and one for key up
-      this->scroll;
       sendReport();
     }
   }
@@ -221,7 +220,7 @@ public:
   void setup(SetupData* setup) {
     usbd::UsbEndpoint* endpoint = device->getControlEndpoint();
     if (
-      setup->bRequest = HID_GET_DESCRIPTOR &&
+      setup->bRequest == HID_GET_DESCRIPTOR &&
       setup->wValue == (HID_DESCRIPTOR_TYPE_REPORT << 8) | 0 &&
       setup->wIndex == 0
       ) {
